@@ -61,13 +61,13 @@ export default function Navbar({
           </Button>
           <div className="hidden md:flex items-center gap-4">
             <Link
-              href="#how"
+              href="/how-it-works"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded-md hover:bg-accent/50"
             >
               [how it works]
             </Link>
             <Link
-              href="#features"
+              href="/features"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded-md hover:bg-accent/50"
             >
               [features]

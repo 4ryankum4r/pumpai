@@ -12,6 +12,14 @@ export function WelcomePage({ onLogin }: { onLogin: () => void }) {
 
   return (
     <div className="min-h-screen w-screen relative overflow-hidden bg-background">
+      {/* Decorative Elements */}
+      <div className="fixed top-[20%] -left-8 w-16 h-16 border border-border rotate-45 opacity-30 pointer-events-none" />
+      <div className="fixed top-[40%] -right-10 w-20 h-20 border border-border rounded-full opacity-30 pointer-events-none" />
+      <div className="fixed bottom-[30%] -left-6 w-12 h-12 border border-border transform rotate-12 opacity-30 pointer-events-none" />
+      <div className="fixed bottom-[20%] -right-8 w-16 h-16 border border-border transform -rotate-12 opacity-30 pointer-events-none" />
+      <div className="fixed top-[60%] -left-12 w-24 h-24 border border-border rounded-full opacity-30 pointer-events-none" />
+      <div className="fixed top-[80%] -right-10 w-20 h-20 border border-border rotate-45 opacity-30 pointer-events-none" />
+
       {/* Side Borders */}
       {/* Removing the outer border container div */}
       {/* Full Width Navbar */}
@@ -54,8 +62,8 @@ export function WelcomePage({ onLogin }: { onLogin: () => void }) {
                   {/* Desktop Right Side */}
                   <div className="hidden md:flex items-center gap-4">
                     <Link
-                      href="#buy"
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      href="#"
+                      className="text-sm text-muted-foreground opacity-50 cursor-not-allowed pointer-events-none"
                     >
                       [buy on Ray]
                     </Link>
@@ -63,7 +71,7 @@ export function WelcomePage({ onLogin }: { onLogin: () => void }) {
                       onClick={onLogin}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      [login to chat]
+                      [login with privy]
                     </button>
                   </div>
 
@@ -136,7 +144,7 @@ export function WelcomePage({ onLogin }: { onLogin: () => void }) {
           variant="outline"
           className="border-border hover:bg-background/40 text-foreground"
         >
-          [connect wallet]
+          [login with privy]
         </Button>
       </div>
 
@@ -185,22 +193,8 @@ export function WelcomePage({ onLogin }: { onLogin: () => void }) {
                       className="text-foreground hover:text-foreground/80 cursor-pointer"
                       onClick={onLogin}
                     >
-                      [go to chat]
+                      [login to start]
                     </span>
-                    <a
-                      href="https://github.com/your-repo"
-                      className="flex items-center gap-2 text-foreground hover:text-muted-foreground transition-colors"
-                    >
-                      [
-                      <Image
-                        src="/landing/github.svg"
-                        alt="GitHub"
-                        width={20}
-                        height={20}
-                        className="h-5 w-5 text-foreground"
-                      />
-                      Open on GitHub ]
-                    </a>
                   </div>
                 </div>
 
@@ -220,13 +214,120 @@ export function WelcomePage({ onLogin }: { onLogin: () => void }) {
           </div>
 
           {/* Features Section - Item 1 */}
-          <div className="w-full">
-            <div className="px-6 py-8">
-              <h2 className="text-3xl max-w-[50%]">
-                Interact with Pump <span className="text-primary">faster</span>{" "}
-                and <span className="text-primary">easier</span> than ever
-                before
+          <div className="w-full border-b border-border">
+            <div className="px-6 py-16" id="features">
+              <h2 className="text-3xl font-semibold mb-12 text-center">
+                Features
               </h2>
+              <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div className="p-6 rounded-lg border border-border bg-background/50">
+                  <h3 className="text-xl font-medium text-foreground mb-4">
+                    Token Analysis
+                  </h3>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      Check bonding curve progress and status
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      Analyze trading bundles and patterns
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      Get real-time token prices and data
+                    </li>
+                  </ul>
+                </div>
+                <div className="p-6 rounded-lg border border-border bg-background/50">
+                  <h3 className="text-xl font-medium text-foreground mb-4">
+                    Trading Actions
+                  </h3>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      Launch new tokens on Pump.fun
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      Swap tokens via Jupiter Exchange
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      Manage token balances and accounts
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* How it Works Section */}
+          <div className="w-full border-b border-border">
+            <div className="px-6 py-16" id="how">
+              <h2 className="text-3xl font-semibold mb-12 text-center">
+                How It Works
+              </h2>
+              <div className="max-w-4xl mx-auto space-y-8">
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="p-6 rounded-lg border border-border bg-background/50">
+                    <div className="text-2xl font-semibold text-primary mb-4">
+                      01
+                    </div>
+                    <h3 className="text-lg font-medium text-foreground mb-2">
+                      Login with Privy
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Get started instantly with embedded wallet - no external
+                      wallet needed
+                    </p>
+                  </div>
+                  <div className="p-6 rounded-lg border border-border bg-background/50">
+                    <div className="text-2xl font-semibold text-primary mb-4">
+                      02
+                    </div>
+                    <h3 className="text-lg font-medium text-foreground mb-2">
+                      Chat Naturally
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Ask questions or give commands in natural language -
+                      PumpAI understands you
+                    </p>
+                  </div>
+                  <div className="p-6 rounded-lg border border-border bg-background/50">
+                    <div className="text-2xl font-semibold text-primary mb-4">
+                      03
+                    </div>
+                    <h3 className="text-lg font-medium text-foreground mb-2">
+                      Execute Actions
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Review and confirm actions - PumpAI handles everything
+                      securely
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-12 p-6 rounded-lg border border-border bg-background/50">
+                  <h3 className="text-lg font-medium text-foreground mb-4">
+                    Example Commands
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-muted-foreground">
+                    <div className="p-2 rounded bg-muted/30">
+                      &ldquo;Check the bonding curve progress for [token]&rdquo;
+                    </div>
+                    <div className="p-2 rounded bg-muted/30">
+                      &ldquo;What&apos;s the current price of [token]?&rdquo;
+                    </div>
+                    <div className="p-2 rounded bg-muted/30">
+                      &ldquo;Analyze trading bundles for [token]&rdquo;
+                    </div>
+                    <div className="p-2 rounded bg-muted/30">
+                      &ldquo;Swap 1 SOL to USDC&rdquo;
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -348,26 +449,6 @@ export function WelcomePage({ onLogin }: { onLogin: () => void }) {
                     fill="currentColor"
                   >
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                </Link>
-                <Link
-                  href="https://github.com/aryan877"
-                  className="text-foreground hover:text-muted-foreground transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
-                    fill="none"
-                    className="h-6 w-6"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M9.00745 0C4.02656 0 0 4.05625 0 9.07437C0 13.0856 2.57996 16.4811 6.15904 17.6828C6.60652 17.7732 6.77043 17.4876 6.77043 17.2473C6.77043 17.037 6.75568 16.3159 6.75568 15.5646C4.25002 16.1055 3.72824 14.4828 3.72824 14.4828C3.32557 13.4312 2.72893 13.1609 2.72893 13.1609C1.90883 12.605 2.78867 12.605 2.78867 12.605C3.69837 12.6651 4.17572 13.5364 4.17572 13.5364C4.98089 14.9185 6.27833 14.528 6.8003 14.2876C6.87478 13.7016 7.11355 13.296 7.36706 13.0707C5.36863 12.8603 3.26602 12.0791 3.26602 8.59353C3.26602 7.60196 3.6237 6.79071 4.19047 6.15978C4.10105 5.93447 3.7878 5.00283 4.28008 3.7559C4.28008 3.7559 5.04062 3.51547 6.75549 4.68736C7.48969 4.48873 8.24686 4.38768 9.00745 4.38683C9.76799 4.38683 10.5433 4.49211 11.2592 4.68736C12.9743 3.51547 13.7348 3.7559 13.7348 3.7559C14.2271 5.00283 13.9137 5.93447 13.8242 6.15978C14.4059 6.79071 14.7489 7.60196 14.7489 8.59353C14.7489 12.0791 12.6463 12.8452 10.6329 13.0707C10.9611 13.3561 11.2443 13.8969 11.2443 14.7533C11.2443 15.9702 11.2295 16.9468 11.2295 17.2472C11.2295 17.4876 11.3936 17.7732 11.8409 17.683C15.42 16.4809 18 13.0856 18 9.07437C18.0147 4.05625 13.9734 0 9.00745 0Z"
-                      fill="currentColor"
-                    />
                   </svg>
                 </Link>
                 <Link

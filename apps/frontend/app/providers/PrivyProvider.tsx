@@ -21,7 +21,7 @@ export function PrivyProvider({ children }: { children: ReactNode }) {
           theme: "dark",
           accentColor: "#F972A5",
         },
-        loginMethods: ["google"],
+        loginMethods: ["google", "email"],
         embeddedWallets: {
           createOnLogin: "off",
           showWalletUIs: true,

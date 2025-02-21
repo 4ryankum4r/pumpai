@@ -151,8 +151,8 @@ export default function AppLayout({
 
                     <div className="hidden md:flex items-center gap-4">
                       <Link
-                        href="#buy"
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        href="#"
+                        className="text-sm text-muted-foreground opacity-50 cursor-not-allowed pointer-events-none"
                       >
                         [buy on Ray]
                       </Link>
@@ -212,9 +212,9 @@ export default function AppLayout({
             [telegram]
           </Link>
           <Link
-            href="#buy"
-            className="text-lg text-muted-foreground hover:text-foreground transition-colors"
-            onClick={toggleMenu}
+            href="#"
+            className="text-lg text-muted-foreground opacity-50 cursor-not-allowed pointer-events-none"
+            onClick={(e) => e.preventDefault()}
           >
             [buy on Ray]
           </Link>

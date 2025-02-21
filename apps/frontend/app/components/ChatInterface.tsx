@@ -155,15 +155,72 @@ export default function ChatInterface({ threadId }: ChatInterfaceProps) {
         <div className="max-w-3xl mx-auto w-full py-4">
           {messages.length === 0 ? (
             <div className="h-full flex items-center justify-center p-4">
-              <div className="text-center max-w-lg mx-auto space-y-4">
-                <h3 className="text-3xl font-semibold text-foreground">
-                  Start a New Conversation
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ask me anything about pump.fun actions - I can help you
-                  analyze and interact with pump.fun&apos;s features and
-                  ecosystem!
-                </p>
+              <div className="text-center max-w-2xl mx-auto space-y-8">
+                <div className="space-y-4">
+                  <h3 className="text-3xl font-semibold text-foreground">
+                    Start a New Conversation
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Ask me anything about pump.fun actions - I can help you
+                    analyze and interact with pump.fun&apos;s features and
+                    ecosystem!
+                  </p>
+                </div>
+
+                {/* Features Section */}
+                <div className="space-y-6 text-left">
+                  <div className="space-y-3">
+                    <h4 className="text-lg font-medium text-foreground">
+                      Key Features:
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="p-4 rounded-lg border border-border bg-background/50">
+                        <h5 className="font-medium text-foreground mb-2">
+                          Token Analysis
+                        </h5>
+                        <ul className="text-sm text-muted-foreground space-y-2">
+                          <li>• Check bonding curve progress</li>
+                          <li>• Analyze trading bundles</li>
+                          <li>• Get real-time token prices</li>
+                        </ul>
+                      </div>
+                      <div className="p-4 rounded-lg border border-border bg-background/50">
+                        <h5 className="font-medium text-foreground mb-2">
+                          Trading Actions
+                        </h5>
+                        <ul className="text-sm text-muted-foreground space-y-2">
+                          <li>• Launch new tokens</li>
+                          <li>• Swap tokens via Jupiter</li>
+                          <li>• Check token balances</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="text-lg font-medium text-foreground">
+                      Example Commands:
+                    </h4>
+                    <div className="grid grid-cols-1 gap-2 text-sm text-muted-foreground">
+                      <div className="p-2 rounded bg-muted/30">
+                        &ldquo;Check the bonding curve progress for
+                        [token]&rdquo;
+                      </div>
+                      <div className="p-2 rounded bg-muted/30">
+                        &ldquo;What&apos;s the current price of [token]?&rdquo;
+                      </div>
+                      <div className="p-2 rounded bg-muted/30">
+                        &ldquo;Analyze trading bundles for [token]&rdquo;
+                      </div>
+                      <div className="p-2 rounded bg-muted/30">
+                        &ldquo;Swap 1 SOL to USDC&rdquo;
+                      </div>
+                      <div className="p-2 rounded bg-muted/30">
+                        &ldquo;Show my token balances&rdquo;
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ) : (
