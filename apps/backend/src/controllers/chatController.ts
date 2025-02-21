@@ -70,11 +70,9 @@ export const createNewThread = async (
 };
 
 export const sendMessage = async (req: AuthenticatedRequest, res: Response) => {
-  // Create an AbortController that will be triggered when the request is aborted
   const controller = new AbortController();
   const { signal } = controller;
 
-  // Add abort handler to clean up when the request is closed
   req.on("close", () => {
     controller.abort();
   });
@@ -94,7 +92,6 @@ export const sendMessage = async (req: AuthenticatedRequest, res: Response) => {
       throw new NotFoundError("Thread not found");
     }
 
-    // Update title if first user message and no title exists
     if (!chatThread.title && messages.length > 0) {
       const firstUserMessage = messages.find(
         (msg: { role: string; content: string }) => msg.role === "user"
@@ -105,9 +102,19 @@ export const sendMessage = async (req: AuthenticatedRequest, res: Response) => {
       }
     }
 
+    const walletAddress = req.user?.walletAddress || "";
+    console.log("walletAddress", walletAddress);
+    if (!walletAddress) {
+      throw new APIError(
+        400,
+        ErrorCode.BAD_REQUEST,
+        "Wallet address is required"
+      );
+    }
+
     const agent = generatePumpAIAgent({
-      address: req.user?.walletAddress || "",
-      cluster: cluster,
+      address: walletAddress.trim(),
+      cluster: cluster || "devnet",
     });
 
     const tools = createSolanaTools(agent);
@@ -145,7 +152,6 @@ export const sendMessage = async (req: AuthenticatedRequest, res: Response) => {
           res.end();
           break;
         }
-        // Check if the request was aborted
         if (signal.aborted) {
           reader.releaseLock();
           res.end();
@@ -168,12 +174,10 @@ export const sendMessage = async (req: AuthenticatedRequest, res: Response) => {
     }
   } catch (error) {
     if (!res.headersSent) {
-      // If it's already an APIError, rethrow it
       if (error instanceof APIError) {
         throw error;
       }
 
-      // For other errors, wrap them in APIError
       throw new APIError(
         500,
         ErrorCode.INTERNAL_SERVER_ERROR,
@@ -182,7 +186,6 @@ export const sendMessage = async (req: AuthenticatedRequest, res: Response) => {
       );
     }
   } finally {
-    // Clean up
     controller.abort();
   }
 };
@@ -245,7 +248,6 @@ export const saveAllMessages = async (
     throw new NotFoundError("Thread not found");
   }
 
-  // Replace all messages in the thread
   chatThread.messages = messages;
   await chatThread.save();
 

@@ -23,8 +23,8 @@ export function PrivyProvider({ children }: { children: ReactNode }) {
         },
         loginMethods: ["google", "email"],
         embeddedWallets: {
-          createOnLogin: "off",
-          showWalletUIs: true,
+          createOnLogin: "users-without-wallets",
+          showWalletUIs: false,
         },
         solanaClusters: [
           {

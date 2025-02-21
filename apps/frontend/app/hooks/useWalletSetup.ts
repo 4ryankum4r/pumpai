@@ -16,6 +16,7 @@ interface WalletSetupActions {
   createAndDelegateWallet: () => Promise<void>;
   delegateExistingWallet: () => Promise<void>;
   resetError: () => void;
+  setError: (error: string | null) => void;
 }
 
 export const useWalletSetup = (): WalletSetupState & WalletSetupActions => {
@@ -73,11 +74,13 @@ export const useWalletSetup = (): WalletSetupState & WalletSetupActions => {
 
       // If user has a wallet but it's not delegated, just delegate it
       if (needsDelegation) {
+        setIsCreatingWallet(false); // Reset creating state since we're delegating
         return delegateExistingWallet();
       }
 
       // If user already has a delegated wallet, prevent creation
       if (isDelegated) {
+        setIsCreatingWallet(false);
         throw new Error("User already has a delegated wallet");
       }
 
@@ -121,5 +124,6 @@ export const useWalletSetup = (): WalletSetupState & WalletSetupActions => {
     createAndDelegateWallet,
     delegateExistingWallet,
     resetError,
+    setError,
   };
 };

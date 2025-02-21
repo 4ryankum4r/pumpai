@@ -1,7 +1,7 @@
-import { Loader2, ChevronLeft } from "lucide-react";
+import { Loader2, ChevronLeft, Plus } from "lucide-react";
 import { useState } from "react";
 import { ThreadPreview } from "../types";
-import { useWalletSetup } from "../hooks/useWalletSetup";
+import { usePrivy, type WalletWithMetadata } from "@privy-io/react-auth";
 import { Button } from "@/components/ui/button";
 import { WalletSetupButton } from "./WalletSetupButton";
 import {
@@ -38,11 +38,17 @@ export default function Sidebar({
   isLoadingMore,
   onLoadMore,
 }: SidebarProps) {
-  const { isDelegated } = useWalletSetup();
+  const { user } = usePrivy();
   const [threadToDelete, setThreadToDelete] = useState<ThreadPreview | null>(
     null
   );
   const [deletingThreadId, setDeletingThreadId] = useState<string | null>(null);
+
+  // Check if any wallet is delegated
+  const hasDelegatedWallet = user?.linkedAccounts.some(
+    (account): account is WalletWithMetadata =>
+      account.type === "wallet" && account.delegated
+  );
 
   const handleDeleteClick = async (
     thread: ThreadPreview,
@@ -75,7 +81,7 @@ export default function Sidebar({
         {/* Header */}
         <div className="flex-shrink-0 h-12 p-2 border-b border-border">
           <div className="flex items-center justify-between h-full">
-            {isDelegated ? (
+            {hasDelegatedWallet ? (
               <Button
                 onClick={onCreateThread}
                 variant="ghost"
@@ -84,7 +90,10 @@ export default function Sidebar({
                 disabled={isLoading}
               >
                 {isLoading && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
-                <div className="flex items-center gap-2">[new chat]</div>
+                <div className="flex items-center gap-2">
+                  <Plus className="h-4 w-4" />
+                  [new chat]
+                </div>
               </Button>
             ) : (
               <WalletSetupButton
@@ -110,7 +119,7 @@ export default function Sidebar({
           {threads.length === 0 ? (
             <div className="p-4 text-center text-muted-foreground">
               <p className="text-sm">[no chats yet]</p>
-              {isDelegated ? (
+              {hasDelegatedWallet ? (
                 <div className="mt-2">
                   <p className="text-xs opacity-80">
                     [start a new chat to begin]
@@ -125,7 +134,10 @@ export default function Sidebar({
                     {isLoading && (
                       <Loader2 className="h-3 w-3 animate-spin mr-1" />
                     )}
-                    [new chat]
+                    <div className="flex items-center justify-center gap-1">
+                      <Plus className="h-3 w-3" />
+                      [new chat]
+                    </div>
                   </Button>
                 </div>
               ) : (
@@ -216,12 +228,12 @@ export default function Sidebar({
             <DialogTitle className="text-base sm:text-lg font-medium text-foreground">
               delete chat
             </DialogTitle>
-            <DialogDescription className="pt-2 sm:pt-3 text-sm text-muted-foreground">
-              <div className="space-y-2">
-                <div>warning: this action is permanent</div>
-                <div className="text-xs sm:text-sm opacity-80">
+            <DialogDescription asChild>
+              <div className="pt-2 sm:pt-3 text-sm text-muted-foreground">
+                <p className="mb-2">warning: this action is permanent</p>
+                <p className="text-xs sm:text-sm opacity-80">
                   chat: {threadToDelete?.title || "untitled"}
-                </div>
+                </p>
               </div>
             </DialogDescription>
           </DialogHeader>
