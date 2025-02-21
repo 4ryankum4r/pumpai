@@ -203,14 +203,17 @@ export default function ChatInterface({ threadId }: ChatInterfaceProps) {
                     </h4>
                     <div className="grid grid-cols-1 gap-2 text-sm text-muted-foreground">
                       <div className="p-2 rounded bg-muted/30">
-                        &ldquo;Check the bonding curve progress for
-                        [token]&rdquo;
+                        &ldquo;Check the bonding curve progress for contract
+                        address:
+                        GjSn1XHncttWZtx9u6JB9BNM3QYqiumXfGbtkm4ypump&rdquo;
                       </div>
                       <div className="p-2 rounded bg-muted/30">
-                        &ldquo;What&apos;s the current price of [token]?&rdquo;
+                        &ldquo;What&apos;s the current price of token CA:
+                        7nxQB...?&rdquo;
                       </div>
                       <div className="p-2 rounded bg-muted/30">
-                        &ldquo;Analyze trading bundles for [token]&rdquo;
+                        &ldquo;Analyze trading bundles for token address:
+                        5BwXbPNGbfd2UuE8rkvASmJYXWXSiqmrhqJ1FX6rQnKd&rdquo;
                       </div>
                       <div className="p-2 rounded bg-muted/30">
                         &ldquo;Swap 1 SOL to USDC&rdquo;

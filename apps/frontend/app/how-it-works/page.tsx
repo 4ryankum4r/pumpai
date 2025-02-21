@@ -70,12 +70,13 @@ export default function HowItWorksPage() {
                   </h3>
                   <div className="grid gap-3">
                     <div className="p-3 rounded bg-muted/30 text-muted-foreground">
-                      You: &ldquo;How is the bonding curve doing for
-                      TOKEN?&rdquo;
+                      You: &ldquo;How is the bonding curve doing for token
+                      address:
+                      GjSn1XHncttWZtx9u6JB9BNM3QYqiumXfGbtkm4ypump?&rdquo;
                     </div>
                     <div className="p-3 rounded bg-muted/30 text-muted-foreground">
-                      PumpAI: &ldquo;The bonding curve is 75% complete with a
-                      current price of 0.001 SOL&rdquo;
+                      PumpAI: &ldquo;The bonding curve for token GjSn1X...pump
+                      is 75% complete with a current price of 0.001 SOL&rdquo;
                     </div>
                   </div>
                 </div>
@@ -86,11 +87,13 @@ export default function HowItWorksPage() {
                   </h3>
                   <div className="grid gap-3">
                     <div className="p-3 rounded bg-muted/30 text-muted-foreground">
-                      You: &ldquo;Swap 1 SOL to USDC&rdquo;
+                      You: &ldquo;Check trading bundles for contract:
+                      5BwXbPNGbfd2UuE8rkvASmJYXWXSiqmrhqJ1FX6rQnKd&rdquo;
                     </div>
                     <div className="p-3 rounded bg-muted/30 text-muted-foreground">
-                      PumpAI: &ldquo;I can help you swap 1 SOL for approximately
-                      123 USDC. Would you like to proceed?&rdquo;
+                      PumpAI: &ldquo;I found 3 trading bundles for token
+                      5BwXb...nKd with a total of 150 trades. Would you like to
+                      see the detailed analysis?&rdquo;
                     </div>
                   </div>
                 </div>

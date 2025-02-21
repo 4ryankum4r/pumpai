@@ -85,24 +85,16 @@ export function WalletSetupButton({
   const buttonText = isCreatingWallet
     ? "[creating wallet...]"
     : isDelegatingWallet
-      ? "[activating wallet...]"
+      ? "[activating...]"
       : needsDelegation
         ? "[activate wallet]"
-        : "[create wallet]";
-
-  // Dialog content based on action type
-  const dialogTitle = needsDelegation
-    ? "[activate your wallet]"
-    : "[create a solana wallet]";
-  const dialogDescription = needsDelegation
-    ? "[to use PumpAI features, you need to activate your wallet. this allows us to perform automated actions on your behalf.]"
-    : "[you need a Solana wallet to use PumpAI. create one now to get started.]";
+        : "[setup wallet]";
 
   return (
     <>
       <Button
         onClick={handleClick}
-        className={className}
+        className={`bg-background hover:bg-background/80 text-muted-foreground hover:text-foreground text-sm ${className}`}
         variant={variant}
         disabled={isLoading}
       >
@@ -114,16 +106,15 @@ export function WalletSetupButton({
       {!needsDelegation && (
         <Dialog open={showDialog} onOpenChange={setShowDialog}>
           <DialogContent className="border-border bg-background">
-            <div className="border-b border-border">
-              <DialogHeader className="p-6">
-                <DialogTitle className="text-xl text-foreground">
-                  {dialogTitle}
-                </DialogTitle>
-                <DialogDescription className="pt-2 text-muted-foreground">
-                  {dialogDescription}
-                </DialogDescription>
-              </DialogHeader>
-            </div>
+            <DialogHeader className="p-6 border-b border-border">
+              <DialogTitle className="text-xl text-foreground">
+                [setup your wallet]
+              </DialogTitle>
+              <DialogDescription className="pt-2 text-muted-foreground">
+                [you need a Solana wallet to use PumpAI. this will create and
+                activate your wallet in one step.]
+              </DialogDescription>
+            </DialogHeader>
 
             <div className="p-6">
               {error && (
@@ -149,10 +140,10 @@ export function WalletSetupButton({
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      {buttonText}
+                      [creating...]
                     </>
                   ) : (
-                    "[create wallet]"
+                    "[setup wallet]"
                   )}
                 </Button>
               </div>

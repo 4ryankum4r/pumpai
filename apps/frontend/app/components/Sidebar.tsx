@@ -1,9 +1,9 @@
 import { Loader2, ChevronLeft } from "lucide-react";
 import { useState } from "react";
 import { ThreadPreview } from "../types";
-import { usePrivy } from "@privy-io/react-auth";
 import { useWalletSetup } from "../hooks/useWalletSetup";
 import { Button } from "@/components/ui/button";
+import { WalletSetupButton } from "./WalletSetupButton";
 import {
   Dialog,
   DialogContent,
@@ -38,24 +38,11 @@ export default function Sidebar({
   isLoadingMore,
   onLoadMore,
 }: SidebarProps) {
-  const { user } = usePrivy();
-  const { createAndDelegateWallet, isCreatingWallet } = useWalletSetup();
+  const { isDelegated } = useWalletSetup();
   const [threadToDelete, setThreadToDelete] = useState<ThreadPreview | null>(
     null
   );
   const [deletingThreadId, setDeletingThreadId] = useState<string | null>(null);
-
-  const handleNewChatClick = async () => {
-    if (user?.wallet?.delegated) {
-      onCreateThread();
-    } else if (needsWalletSetup) {
-      try {
-        await createAndDelegateWallet();
-      } catch (error) {
-        console.error("Failed to setup wallet:", error);
-      }
-    }
-  };
 
   const handleDeleteClick = async (
     thread: ThreadPreview,
@@ -81,9 +68,6 @@ export default function Sidebar({
     return thread.title || "[new chat]";
   };
 
-  const canCreateNewChat = user?.wallet?.delegated;
-  const needsWalletSetup = !user?.wallet || !user.wallet.delegated;
-
   return (
     <>
       {/* Sidebar */}
@@ -91,22 +75,24 @@ export default function Sidebar({
         {/* Header */}
         <div className="flex-shrink-0 h-12 p-2 border-b border-border">
           <div className="flex items-center justify-between h-full">
-            <Button
-              onClick={handleNewChatClick}
-              variant="ghost"
-              className={`bg-background hover:bg-background/80 text-muted-foreground hover:text-foreground text-sm h-8
-                ${onToggleCollapse ? "w-[calc(100%-36px)]" : "w-full"}`}
-              disabled={isLoading || isCreatingWallet}
-            >
-              {isLoading || isCreatingWallet ? (
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-              ) : null}
-              {canCreateNewChat ? (
-                <div className="flex items-center gap-2">[new chat] [+]</div>
-              ) : (
-                "[setup wallet to chat]"
-              )}
-            </Button>
+            {isDelegated ? (
+              <Button
+                onClick={onCreateThread}
+                variant="ghost"
+                className={`bg-background hover:bg-background/80 text-muted-foreground hover:text-foreground text-sm h-8
+                  ${onToggleCollapse ? "w-[calc(100%-36px)]" : "w-full"}`}
+                disabled={isLoading}
+              >
+                {isLoading && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+                <div className="flex items-center gap-2">[new chat]</div>
+              </Button>
+            ) : (
+              <WalletSetupButton
+                onSuccess={onCreateThread}
+                variant="ghost"
+                className={`h-8 ${onToggleCollapse ? "w-[calc(100%-36px)]" : "w-full"}`}
+              />
+            )}
             {onToggleCollapse && (
               <Button
                 variant="ghost"
@@ -124,13 +110,36 @@ export default function Sidebar({
           {threads.length === 0 ? (
             <div className="p-4 text-center text-muted-foreground">
               <p className="text-sm">[no chats yet]</p>
-              <p className="text-xs mt-2 opacity-80">
-                {canCreateNewChat
-                  ? "[start a new chat to begin]"
-                  : needsWalletSetup && user?.wallet
-                    ? "[activate wallet to start chatting]"
-                    : "[setup wallet to start chatting]"}
-              </p>
+              {isDelegated ? (
+                <div className="mt-2">
+                  <p className="text-xs opacity-80">
+                    [start a new chat to begin]
+                  </p>
+                  <Button
+                    onClick={onCreateThread}
+                    variant="ghost"
+                    size="sm"
+                    className="mt-2 w-full text-xs"
+                    disabled={isLoading}
+                  >
+                    {isLoading && (
+                      <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                    )}
+                    [new chat]
+                  </Button>
+                </div>
+              ) : (
+                <div className="mt-2">
+                  <p className="text-xs opacity-80">
+                    [setup your wallet to start chatting]
+                  </p>
+                  <WalletSetupButton
+                    onSuccess={onCreateThread}
+                    variant="ghost"
+                    className="mt-2 w-full text-xs"
+                  />
+                </div>
+              )}
             </div>
           ) : (
             <div className="space-y-0.5 p-2">

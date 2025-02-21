@@ -30,7 +30,8 @@ export default function FeaturesPage() {
                   </h3>
                   <p className="text-muted-foreground">
                     Track bonding curve progress, current price, and completion
-                    status of any token on Pump.fun.
+                    status of any token on Pump.fun using its contract address
+                    (CA).
                   </p>
                 </div>
                 <div className="space-y-3">
@@ -38,8 +39,9 @@ export default function FeaturesPage() {
                     Bundle Analysis
                   </h3>
                   <p className="text-muted-foreground">
-                    Analyze trading bundles, patterns, and holder behavior to
-                    make informed decisions.
+                    Analyze trading bundles, patterns, and holder behavior by
+                    providing the token&apos;s contract address to make informed
+                    decisions.
                   </p>
                 </div>
                 <div className="space-y-3">
@@ -97,13 +99,16 @@ export default function FeaturesPage() {
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="p-3 rounded bg-muted/30 text-muted-foreground">
-                  &ldquo;Check bonding curve for TOKEN&rdquo;
+                  &ldquo;Check bonding curve for token CA:
+                  GjSn1XHncttWZtx9u6JB9BNM3QYqiumXfGbtkm4ypump&rdquo;
                 </div>
                 <div className="p-3 rounded bg-muted/30 text-muted-foreground">
-                  &ldquo;Show me trading bundles for TOKEN&rdquo;
+                  &ldquo;Show me trading bundles for contract:
+                  5BwXbPNGbfd2UuE8rkvASmJYXWXSiqmrhqJ1FX6rQnKd&rdquo;
                 </div>
                 <div className="p-3 rounded bg-muted/30 text-muted-foreground">
-                  &ldquo;What&apos;s the current price of TOKEN?&rdquo;
+                  &ldquo;What&apos;s the price of token address:
+                  7nxQB...?&rdquo;
                 </div>
                 <div className="p-3 rounded bg-muted/30 text-muted-foreground">
                   &ldquo;Launch a new token with 0.1 SOL liquidity&rdquo;
